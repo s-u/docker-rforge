@@ -23,6 +23,9 @@ RUN echo 'svn stream tcp nowait svnuser /usr/bin/svnserve svnserve -i -r /var/sv
 
 COPY run.sh /root/run.sh
 
+## needed for SVG generation
+RUN apt-get install -q -y fonts-dejavu-core libharfbuzz0b libfreetype6
+
 EXPOSE 80 81 3690
 
 CMD bash /root/run.sh
