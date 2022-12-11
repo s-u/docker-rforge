@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#IMAGE=77f03a0105ef
+#IMAGE=0996f1057b14
+#IMAGE=8b90b541f0c1
+#IMAGE=c32bf9988e48
+#IMAGE=098fc079ef8a
+#IMAGE=9f8f29253488
+IMAGE=890f1ad7fbfd
+
+if [ -z "$1" ]; then
+  echo '' >&2
+  echo "ERROR: missing package name" >&2
+  echo '' >&2
+  exit 1
+fi
+
+if tty -s; then ITFLAGS=-it; fi
+
+docker run --rm $ITFLAGS --mount type=bind,source=/www/rforge,target=/www/rforge $IMAGE su rforge /www/rforge/maintenance/daily $1
